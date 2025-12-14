@@ -22,13 +22,8 @@ spec:
           ports:
             - containerPort: 8081
           env:
-            - name: SPRING_DATASOURCE_URL
-              value: "jdbc:mysql://host.docker.internal:3306/demo-k8s?createDatabaseIfNotExist=true&useSSL=false&serverTimezone=UTC"
-            - name: SPRING_DATASOURCE_USERNAME
-              value: "root"
-            - name: SPRING_DATASOURCE_PASSWORD
-              value: ""
-            - name: SPRING_JPA_HIBERNATE_DDL_AUTO
-              value: "update"
-            - name: SPRING_JPA_SHOW_SQL
-              value: "true"
+            - name: APP_MESSAGE
+              valueFrom:
+                configMapKeyRef:
+                  name: demo-k8s-config
+                  key: app.message
